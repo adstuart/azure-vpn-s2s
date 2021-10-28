@@ -27,7 +27,12 @@ Using the portal I set the SKU to VpnGw2 and clicked "save".
 
 ### Results
 
-The ARM request took X minutes to complete.
+#### ARM/API completion
+
+The ARM request took 26 minutes to complete.
+![](images/2021-10-28-13-22-42.png)
+
+#### Dataplane availability
 
 ```
 //172.16.1.4 is a VM in Azure, this is being sourced from my branch network
@@ -48,7 +53,7 @@ rtt min/avg/max/mdev = 8.853/37.880/165.954/52.856 ms
 //95 pings lost = 95 seconds downtime
 ```
 
-5 minutes in to the operation I experience around **90 seconds** of downtime on my S2S connections utilizing this gateway.
+5 minutes in to the operation I experienced around **90 seconds** of downtime on my S2S connections utilizing this gateway.
 
 # Closing
 

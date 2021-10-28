@@ -250,7 +250,7 @@ $localnetGateway2 = Get-AzLocalNetworkGateway -ResourceGroupName GBB-ER-LAB-UKS 
 New-AzVirtualNetworkGatewayConnection -ResourceGroupName GBB-ER-LAB-UKS -name to-onprem1-fixedts -location uksouth -VirtualNetworkGateway1 $vnetGateway -LocalNetworkGateway2 $localnetGateway1 -ConnectionType IPsec -SharedKey Msft123Msft123 -UsePolicyBasedTrafficSelectors $true -TrafficSelectorPolicy ($trafficSelectorPolicy3) -IpsecPolicies $ipsecPolicy
 New-AzVirtualNetworkGatewayConnection -ResourceGroupName GBB-ER-LAB-UKS -name to-onprem2-fixedts -location uksouth -VirtualNetworkGateway1 $vnetGateway -LocalNetworkGateway2 $localnetGateway2 -ConnectionType IPsec -SharedKey Msft123Msft123 -UsePolicyBasedTrafficSelectors $true -TrafficSelectorPolicy ($trafficSelectorPolicy4) -IpsecPolicies $ipsecPolicy
 ```
-![](images/2021-10-28-15-46-19.png)
+![](images/2021-10-28-22-27-29.png)
 
 Why have these traffic selector policies not helped us? Why can red still communicate with blue?
 
