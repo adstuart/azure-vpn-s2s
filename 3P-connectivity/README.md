@@ -327,7 +327,7 @@ That was a really long way of saying:
 Let's address the elephant in the room. Yes, we may be able to use the above logic to find a workable solution using Azure VPN Gateway, but what about overlapping IP addresses. This is an area to explore in the future articles, just be aware that there is now a feature that is aimed at this space: [NAT on Azure VPN Gateways](https://docs.microsoft.com/en-us/azure/vpn-gateway/nat-howto). Please note this is currently in _preview_ as of October 2021. 
 
 The main reason for not exploring this further at this time, is an existing preview caveat making it incomaptible with Policy Based Traffic Selectors:
-
+-
 > [NAT rules are not supported on connections that have Use Policy Based Traffic Selectors enabled.](https://docs.microsoft.com/en-us/azure/vpn-gateway/nat-howto#:~:text=NAT%20rules%20are%20not%20supported%20on%20connections%20that%20have%20Use%20Policy%20Based%20Traffic%20Selectors%20enabled.)
 
 
