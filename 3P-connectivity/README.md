@@ -396,7 +396,7 @@ In the diagram below the red 3rd party can only ever access vnet resources withi
 
 Typically this function (filtering specific remote sites to specific folks is performed by a layer3/4 firewall inline between VPN Gateway and Spoke), but perhaps this IKEv2 pattern may prove useful for some scenarios.
 
-You could also add traditional firewall filtering in the mix for another level of protection if required, this would also provide a more scalable way of port level L4 filtering. E.g.
+You could also add traditional firewall filtering in the mix for another level of protection if required, this would also provide a more scalable way of port-level L4 filtering, logging/auditing etc. E.g.
 
 ![](images/2021-10-28-22-23-48.png)
 
