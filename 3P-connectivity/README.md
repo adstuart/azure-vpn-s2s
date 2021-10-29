@@ -188,7 +188,7 @@ PING 10.2.10.10 (10.2.10.10) 56(84) bytes of data.
 64 bytes from 10.2.10.10: icmp_seq=2 ttl=62 time=18.7 ms
 ```
 
-**We are now routing packets between the red third party and tje blue third party, via our own VPN Gateway. I'm sure our B2B partners did not sign up for this!**
+**We are now routing packets between the red third party and the blue third party, via our own VPN Gateway. I'm sure our B2B partners did not sign up for this!**
 
 ![](images/2021-10-28-15-15-52.png)
 
