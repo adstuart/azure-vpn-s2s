@@ -275,6 +275,8 @@ Lets once again rebuild our connections, this time with:
 - traffic selector policies = yes
 - connection mode = initiator only
 
+> :warning: Initiator-only Connection Mode may be incompatible if your remote 3rd party is behind any sort of NAT for termination of IPSec tunnel itself. See [here](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-vpn-faq#:~:text=Yes%2C%20NAT%20traversal%20(NAT-T)%20is%20supported.%20Azure%20VPN%20Gateway%20will%20NOT%20perform%20any%20NAT-like%20functionality%20on%20the%20inner%20packets%20to/from%20the%20IPsec%20tunnels.%20In%20this%20configuration%2C%20please%20ensure%20the%20on-premises%20device%20initiates%20the%20IPSec%20tunnel.)
+
 ```
 $ipsecPolicy = New-AzIpsecPolicy -SALifeTimeSeconds 27000 -SADataSizeKilobytes 102400000 -IpsecEncryption "AES256" -IpsecIntegrity "SHA1" -IkeEncryption "AES256" -IkeIntegrity "SHA1" -DhGroup "DHGroup2" -PfsGroup "None"
 $trafficSelectorPolicy5 = New-AzIpsecTrafficSelectorPolicy -LocalAddressRange ("172.16.1.0/24") -RemoteAddressRange ("10.1.0.0/16")
@@ -328,7 +330,7 @@ That was a really long way of saying:
 Let's address the elephant in the room. Yes, we may be able to use the above logic to find a workable solution using Azure VPN Gateway, but what about overlapping IP addresses. This is an area to explore in the future articles, just be aware that there is now a feature that is aimed at this space: [NAT on Azure VPN Gateways](https://docs.microsoft.com/en-us/azure/vpn-gateway/nat-howto). Please note this is currently in _preview_ as of October 2021. 
 
 The main reason for not exploring this further at this time, is an existing preview caveat making it incomaptible with Policy Based Traffic Selectors:
--
+
 > [NAT rules are not supported on connections that have Use Policy Based Traffic Selectors enabled.](https://docs.microsoft.com/en-us/azure/vpn-gateway/nat-howto#:~:text=NAT%20rules%20are%20not%20supported%20on%20connections%20that%20have%20Use%20Policy%20Based%20Traffic%20Selectors%20enabled.)
 
 
@@ -355,7 +357,7 @@ Examples include:
 - [Cisco CSR - thanks again Jeremy!](https://github.com/jwrightazure/lab/tree/master/csr-vpn-to-csr-ikev2-overlappingAdress)
 - [Aviatrix](https://aviatrix.com/learn-center/cloud-networking/handling-overlapping-ips/)
 
-**Today, if you need a GA production ready solution today (_to meet the [ requirements](#typical-requirements) laid out in this specific document) the recommendation is to look at a third party NVA based architecture. (But please do kick the tyres on the preview featurs of the Cloud native solutions posed above).**
+**Today, if you need a GA production ready solution today (to meet the [ requirements](#typical-requirements) laid out in this specific document) the recommendation is to look at a third party NVA based architecture. (But please do kick the tyres on the preview features of the Cloud native solutions posed above).**
 
 ## Physical cloud edge/DMZ
 
@@ -383,6 +385,8 @@ I made heavy use of the following debug commands on the Cisco CSR NVA appliance 
 - Marc de Droog
 - Stefano Gagliardi
 - Ahmad AlDeiri
+- Ali Zaman
+- Alexandre Weiss
 - ...anyone I forgot
 
 ## Appendix - Azure Traffic Selector Policies 
