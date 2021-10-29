@@ -190,6 +190,8 @@ PING 10.2.10.10 (10.2.10.10) 56(84) bytes of data.
 
 **We are now routing packets between the red third party and the blue third party, via our own VPN Gateway. I'm sure our B2B partners did not sign up for this!**
 
+> This behaviour is not because the VPN Gateway is doing anything _incorrect_ per say, but more that without further tuning it will accept potentially incorrect traffic selectors from its IKE peer.
+
 ![](images/2021-10-28-15-15-52.png)
 
 ## Azure VPN Gateway, policy based traffic selectors
