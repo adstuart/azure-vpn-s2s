@@ -38,6 +38,7 @@ In this article we explore the different options for implementing this pattern, 
 
 _Spoiler tl;dr conclusion - You can do this using native Azure networking tools today using some toggles that are in preview. For now, any production designs should use a Network Virtual Appliance (NVA) based solution._
 
+
 #  Introduction
 
 ## Context
@@ -151,7 +152,7 @@ permit ip 10.1.0.0 0.0.255.255 172.16.0.0 0.0.255.255
 permit ip 10.0.0.0 0.255.255.255 10.0.0.0 0.255.255.255
 
 //Blue CSR
-permit ip 10.1.0.0 0.0.255.255 172.16.100.0 0.0.0.255
+permit ip 10.2.0.0 0.0.255.255 172.16.100.0 0.0.0.255
 permit ip 10.0.0.0 0.255.255.255 10.0.0.0 0.255.255.255
 ```
 
