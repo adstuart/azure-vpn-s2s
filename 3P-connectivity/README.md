@@ -1,9 +1,9 @@
 
-# Secure VPN connectivity, from Azure to remote third parties 
+# High-security S2S VPN connectivity, Azure to 3rd parties 
 
 <!-- TOC -->
 
-- [Secure VPN connectivity, from Azure to remote third parties](#secure-vpn-connectivity-from-azure-to-remote-third-parties)
+- [High-security S2S VPN connectivity, Azure to 3rd parties](#high-security-s2s-vpn-connectivity-azure-to-3rd-parties)
 - [Summary](#summary)
 - [Introduction](#introduction)
     - [Context](#context)
