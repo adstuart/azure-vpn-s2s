@@ -1,0 +1,300 @@
+CSR1#show run
+Building configuration...
+
+Current configuration : 7940 bytes
+!
+! Last configuration change at 07:16:16 UTC Sat Oct 30 2021
+!
+version 16.10
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+service call-home
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname CSR1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+vrf definition GS
+ rd 100:100
+ !
+ address-family ipv4
+ exit-address-family
+!
+logging persistent size 1000000 filesize 8192 immediate
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authorization exec default local none
+!
+!
+!
+!
+!
+aaa session-id common
+call-home
+ ! If contact email address in call-home is configured as sch-smart-licensing@cisco.com
+ ! the email address configured in Cisco Smart License Portal will be used as contact email address to send SCH notifications.
+ contact-email-addr sch-smart-licensing@cisco.com
+ profile "CiscoTAC-1"
+  active
+  destination transport-method http
+  no destination transport-method email
+!
+!
+!
+!
+!
+!
+!
+ip domain name CSR1.cloudapp.net
+!
+!
+!
+login on-success log
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+!
+!
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
+!
+crypto pki trustpoint TP-self-signed-878042625
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-878042625
+ revocation-check none
+ rsakeypair TP-self-signed-878042625
+!
+!
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0
+  D697DF7F 28
+        quit
+crypto pki certificate chain TP-self-signed-878042625
+ certificate self-signed 01
+  3082032E 30820216 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  30312E30 2C060355 04031325 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 38373830 34323632 35301E17 0D323131 30323830 36313034
+  355A170D 33303031 30313030 30303030 5A303031 2E302C06 03550403 1325494F
+  532D5365 6C662D53 69676E65 642D4365 72746966 69636174 652D3837 38303432
+  36323530 82012230 0D06092A 864886F7 0D010101 05000382 010F0030 82010A02
+  82010100 D2114429 8CF67A01 2B2F3B9C 2F12731B FE477DCE 28C49CFD 016637C2
+  EA60B250 AE092B37 FFB5DB54 73AF1390 A580C997 A0D85B7B 89B02AB0 B7E579DA
+  6A63A696 1FFE74E1 3C8AFEBC EC9F8055 2F321515 B5D3E1DA 96FE2176 BAE73602
+  9265F397 8EFFB835 DBE7831E 2F537DA4 32D2BBC9 1BF36308 18D8F5E0 069255FC
+  D0EF4EB4 3DD90CA3 17B4B337 88532B62 89A793F5 C949A21E 368DF882 B017802E
+  969ACDC3 9137C295 ABC59150 6AA583E7 88A63429 7F7D85D5 43224E1D DD39FAE2
+  A9B700ED F0CA8A73 75BD64B1 2149DB91 E3307172 19070C38 B83796BC DE8022E7
+  89A45E8E 8A2BA31E B191B4B4 74913B19 343CA37C 7AD8B48B 0F6E0BFA 5A4C5AD5
+  09DFC1ED 02030100 01A35330 51300F06 03551D13 0101FF04 05300301 01FF301F
+  0603551D 23041830 1680149B 0BE24288 B917E136 0B14331F 0A4E6770 8DFAA530
+  1D060355 1D0E0416 04149B0B E24288B9 17E1360B 14331F0A 4E67708D FAA5300D
+  06092A86 4886F70D 01010505 00038201 0100A6B4 75034972 6E2D9080 2CDAC665
+  B5554AFC 91DA0758 3E96A8F1 C7BD2384 C86A5015 7A3DC4D8 C0E29937 050995C0
+  3BCCB4DA C5831B26 ECA44E9E 70695733 68F5089B F0DA7605 FBBCBD7C 6DB78DA8
+  27E57FE6 3D894FC0 A32D713B 60A101DC 02304E3A 1F799298 0911773F A94AE446
+  619A8708 E9D33FEB AEF26201 163ADD5E AA32BFA8 F528025A 81B52E36 41547EEE
+  6EBC9FCC 78F8B3A9 AB6139F0 9D12525C B8A94ECE 2ED1D948 92F349ED 5C63FD39
+  3A5FB10C 910A67F1 40D71D00 566F5DAD 52B2BD6F ADEE9E46 000ACA5C 12D1DD04
+  A6551917 C8962CA4 896F31B1 16E51733 37E1FCEF BA512C1D 9349EE9C 75682324
+  50C525F7 1B330C9C A5EBC4C2 DDF96DFD 9E01
+        quit
+!
+crypto pki certificate pool
+ cabundle nvram:ios_core.p7b
+!
+license udi pid CSR1000V sn 9UKM6QIOUVZ
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+!
+!
+username gbb_admin privilege 15 password 7 047A11131D244D4A04100B4640584D
+!
+redundancy
+!
+crypto ikev2 proposal to-azure-prop
+ encryption aes-cbc-256 aes-cbc-128 3des
+ integrity sha1
+ group 2
+!
+crypto ikev2 policy to-azure-pol
+ proposal to-azure-prop
+!
+crypto ikev2 keyring to-azure-keyring
+ peer Azure-peer
+  address 52.151.66.181
+  pre-shared-key Msft123Msft123
+ !
+!
+!
+crypto ikev2 profile prof
+ match address local 10.1.0.4
+ match identity remote address 52.151.66.181 255.255.255.255
+ authentication remote pre-share
+ authentication local pre-share
+ keyring local to-azure-keyring
+ lifetime 28800
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+crypto ipsec transform-set AZURE esp-aes 256 esp-sha-hmac
+ mode tunnel
+!
+!
+!
+crypto map AZURE 10 ipsec-isakmp
+ set peer 52.151.66.181
+ set security-association lifetime seconds 28800
+ set transform-set AZURE
+ set pfs group2
+ set ikev2-profile prof
+ match address VPN-Azure-to-Onprem
+!
+!
+!
+!
+!
+!
+!
+!
+interface VirtualPortGroup0
+ vrf forwarding GS
+ ip address 192.168.35.101 255.255.255.0
+ ip nat inside
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet1
+ ip address dhcp
+ ip nat outside
+ negotiation auto
+ no mop enabled
+ no mop sysid
+ crypto map AZURE
+!
+interface GigabitEthernet2
+ ip address dhcp
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+iox
+ip forward-protocol nd
+ip tcp window-size 8192
+ip http server
+ip http secure-server
+ip nat inside source list GS_NAT_ACL interface GigabitEthernet1 vrf GS overload
+ip route 10.1.10.0 255.255.255.0 10.1.1.1
+ip route 52.151.66.181 255.255.255.255 10.1.0.1
+ip route vrf GS 0.0.0.0 0.0.0.0 GigabitEthernet1 10.1.0.1 global
+!
+ip ssh rsa keypair-name sshkeys
+ip scp server enable
+!
+!
+ip access-list standard GS_NAT_ACL
+ permit 192.168.35.0 0.0.0.255
+!
+ip access-list extended VPN-Azure-to-Onprem
+ permit ip 10.0.0.0 0.255.255.255 10.0.0.0 0.255.255.255
+ permit ip 10.1.0.0 0.0.255.255 172.16.0.0 0.0.255.255
+ permit ip 10.1.0.0 0.0.0.255 10.2.0.0 0.0.0.255
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+line con 0
+ stopbits 1
+line aux 0
+ stopbits 1
+line vty 0 4
+ transport input ssh
+line vty 5 20
+ transport input ssh
+!
+!
+!
+!
+!
+!
+app-hosting appid guestshell
+ app-vnic gateway1 virtualportgroup 0 guest-interface 0
+  guest-ipaddress 192.168.35.102 netmask 255.255.255.0
+ app-default-gateway 192.168.35.101 guest-interface 0
+ name-server0 8.8.8.8
+end
