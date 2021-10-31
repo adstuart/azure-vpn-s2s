@@ -344,6 +344,14 @@ Thus far all discussion has focused on Azure VPN Gateway only, and exploring its
 
 _Work in progress_
 
+<!-- 
+
+![](images/2021-10-30-14-05-17.png)
+
+![](images/2021-10-30-14-05-01.png)
+
+. -->
+
 ## Network Virtual Appliance (NVA)
 
 Third Party Network appliances are available from most leading network vendors via the Azure Marketplace. These appliances can be used to meet all of the above requirements thanks to an almost unlimited scope for customisation. 
@@ -406,4 +414,6 @@ Typically this function (filtering specific remote sites to specific folks is pe
 You could also add traditional firewall filtering in the mix for another level of protection if required, this would also provide a more scalable way of port-level L4 filtering, logging/auditing etc. E.g.
 
 ![](images/2021-10-28-22-23-48.png)
+
+> NB. Note that this approach requires a UDR on the GatewaySubnet to direct traffic destined for spoke VNets towards your Virtual Firewall Appliance (or Azure Firewall). _This has implications if you are also using ExpressRoute, as any existing ER Gateway must share the same GatewaySubnet and will therefore be subject to the same UDR logic._
 
