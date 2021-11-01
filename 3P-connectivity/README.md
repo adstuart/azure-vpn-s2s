@@ -352,7 +352,7 @@ However, Virtual WAN has a preview feature that allows **all** branch-to-branch 
 
 > :exclamation: This means that this approach works for all scenarios, including route based VPN's with BGP enabled sites and wide 0/0 traffic selectors!
 
-For context on routing intent, and to sign up to the preview, please see [here](https://docs.microsoft.com/en-us/azure/virtual-wan/about-virtual-hub-routing#-hub-routing-intent-and-policies)
+For context on the Azure Virtal WAN Routing Intent feature, and to sign up to the preview, please see [here](https://docs.microsoft.com/en-us/azure/virtual-wan/about-virtual-hub-routing#-hub-routing-intent-and-policies)
 
 Let's enable this feature once our subscription has been added to the allow-list, note that my VPN connections are now sending private traffic via Azure Firewall.
 
