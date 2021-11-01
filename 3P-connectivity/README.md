@@ -342,15 +342,29 @@ Thus far all discussion has focused on Azure VPN Gateway only, and exploring its
 
 ## Azure Virtual WAN, routing intent policies _(preview)_
 
-_Work in progress_
+The default behaviour or a VPN Gateway inside of a Virtual WAN hub, shown in the diagram below, would exhibit the same behaviour as per a regular VPN Gateway in a customer-managed hub network.
 
-<!-- 
+I.e. If Traffic Selectors are sufficiently wider enough, red to blue transit routing is permitted via the gateway.
+
+![](images/2021-11-01-18-57-15.png)
+
+However, Virtual WAN has a preview feature that allows **all** branch-to-branch traffic to be forced via Azure Firewall. This in effect stops the hairpin routing on the VPN Gateway, regardless of the traffic selectors specified.
+
+> :exclamation: This means that this approach works for all scenarios, including route based VPN's with BGP enabled sites and wide 0/0 traffic selectors!
+
+For context on routing intent, and to sign up to the preview, please see [here](https://docs.microsoft.com/en-us/azure/virtual-wan/about-virtual-hub-routing#-hub-routing-intent-and-policies)
+
+Let's enable this feature once our subscription has been added to the allow-list, note that my VPN connections are now sending private traffic via Azure Firewall.
 
 ![](images/2021-10-30-14-05-17.png)
 
 ![](images/2021-10-30-14-05-01.png)
 
-. -->
+![](images/2021-11-01-17-00-41.png)
+
+Upon retesting we now see that behaviour has changed, and this can controlled using Azure Firewall roles as part of your Secured Virtual Hub Azure Firewall Policy.
+
+![](images/2021-11-01-19-12-43.png)
 
 ## Network Virtual Appliance (NVA)
 
