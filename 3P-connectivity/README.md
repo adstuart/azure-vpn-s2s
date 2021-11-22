@@ -36,7 +36,9 @@ A semi-frequent requirement for customers on Azure is to connect their applicati
 
 In this article we explore the different options for implementing this pattern, and show why the standard behaviour of native Azure VPN Gateways needs to be well understood before approaching this design.
 
-_Spoiler tl;dr conclusion - You can do this using native Azure networking tools today using some toggles that are in preview. For now, any production designs should use a Network Virtual Appliance (NVA) based solution._
+**TL;DR To enable this pattern with high security we can either;**
+- **Use native Azure components, but today these require using some features/toggles that are in preview.**
+- **Use third party  Network Virtual Appliance (NVA) based solutions for production designs today**
 
 
 #  Introduction
@@ -55,7 +57,7 @@ Prevalent in many industries and verticals, but especially in those adhering to 
 
 - I understand that I am in the process of modernizing my application estate to adhere to principles such as Zero Trust, Internet-first and "Beyond VPN" however this _is a journey_. For the foreseeable future, whilst I and my regulators catch up, **I need to retain connectivity to my third party partners using a private network connection**
 - It is implied that this therefore requires a **VPN** over the Internet, as the remote third party does not share my MPLS WAN
-- I wish to provide this VPN server/headend function **in the cloud**, removing a dependency on my On-Premises Data centre, and optimizing the latency for my partners accessing applications now hosted in Azure
+- I wish to provide this VPN server/head-end function **in the cloud**, removing a dependency on my On-Premises Data centre, and optimizing the latency for my partners accessing applications now hosted in Azure
 
 **Medium Resolution**
 
@@ -128,7 +130,7 @@ The resulting behaviour is as follows:
 
 <sup>1</sup>When using default connection setup TS behaviour is as follows:
 -  Azure VPN Gateway will attempt 0/0 wide TS initially
-- If unsuccessful (E.g. IKEV2_TS_UNACCEPTABLE message is returned) thenl failback and try narrow TS that reflect matrix of _VNet address spaces (in hub and spoke) > LNG prefixes_
+- If unsuccessful (E.g. IKEV2_TS_UNACCEPTABLE message is returned) then fall-back and try narrow TS that reflect matrix of _VNet address spaces (in hub and spoke) > LNG prefixes_
 - Finally, if this is unsuccessful it will also try even narrower TS of just _Hub VNet address space only > LNG_
 
 0/0 TS attempted SEND can be verified within IKEDiagnostic logs (available via VPN Gateway Diagnostic logs export to Log Analytics). E.g.
