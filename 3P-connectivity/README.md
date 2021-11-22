@@ -40,7 +40,6 @@ In this article we explore the different options for implementing this pattern, 
 - **Use native Azure components, but today these require using some features/toggles that are in preview.**
 - **Use third party  Network Virtual Appliance (NVA) based solutions for production designs today**
 
-
 #  Introduction
 
 ## Context
@@ -373,7 +372,7 @@ Upon retesting we now see that behaviour has changed, and this can controlled us
 Third Party Network appliances are available from most leading network vendors via the Azure Marketplace. These appliances can be used to meet all of the above requirements thanks to an almost unlimited scope for customisation. 
 Specifically they mostly can;
 
-- perform granular ikev2 phase 2 custom
+- perform granular ikev2 phase 2 customisation
 - perform firewalling "in box" for tunnel to tunnel traffic
 - allow multi vrf designs which enable scenarios requiring both strict isolation and dynamic routing using protocols such as BGP
 - perform NAT or double-NAT to cater for overlapping IP scenarios
