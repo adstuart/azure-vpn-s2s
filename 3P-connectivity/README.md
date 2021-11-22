@@ -402,7 +402,7 @@ I made heavy use of the following debug commands on the Cisco CSR NVA appliance 
 - clear crypto sa
 - debug crypto ikev2 packet
 - debug crypto ikev2 internal
-- (term mon)-
+- (term mon)
 
 ## Thanks
 
