@@ -30,7 +30,7 @@ Failover in this scenario should also be simple, **as long as you standup tunnel
 
 Let's say you are happily running an A/S GW with tunnels only to the primary node, and you upgrade to A/A, perhaps to get compatibility with another service such as [Azure Route Server](https://learn.microsoft.com/en-us/azure/route-server/expressroute-vpn-support#:~:text=route%20exchange.-,Important,-Azure%20VPN%20gateway). Now lets say you forget to build those second tunnels, and end up with something like this:
 
-![image](image.PNG)
+![image](image.png)
 
 What happens if the "first node", I.e. the node my tunnel is connected to, fails?
 
