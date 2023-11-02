@@ -30,4 +30,20 @@ Failover in this scenario should also be simple, **as long as you standup tunnel
 
 Let's say you are happily running an A/S GW with tunnels only to the primary node, and you upgrade to A/A, perhaps to get compatibility with another service such as [Azure Route Server](https://learn.microsoft.com/en-us/azure/route-server/expressroute-vpn-support#:~:text=route%20exchange.-,Important,-Azure%20VPN%20gateway). Now lets say you forget to build those second tunnels, and end up with something like this:
 
+![image](image.PNG)
+
+What happens if the "first node", I.e. the node my tunnel is connected to, fails?
+
+If you are using BGP:
+- Public IP = does not failover
+- Private IP = does not failover
+- BGP peer IP = does not failover
+
+If you are not using BGP:
+- Public IP = fails over
+- Private IP = does not failover
+- BGP peer IP = n/a
+
+So make your life easy/simple and always ensure tunnels are built to both nodes if using A/A Gateways (or Virtual WAN). The only scenario where it is "safe" (still not best practice or sensible considering the minimal effort) not to, is if you are not using BGP, and you are only using tunnels over the Internet to PIP. 
+
 
